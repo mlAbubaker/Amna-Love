@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For My Sister Amna 💖</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            font-family: Arial;
+            padding-top: 120px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 25px;
+            outline: none;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            margin: 15px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background-color: green;
+            color: white;
+            filter: blur(3px);
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #noBtn {
+            background-color: purple;
+            color: white;
+        }
+
+        .final-message {
+            font-size: 26px;
+            margin-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Will You Say Happy Valentine's Day To Your Brother? 💖</h1>
+
+    <input type="text" id="loveInput">
+
+    <br>
+
+    <button id="yesBtn" disabled onclick="showLove()">YES 💖</button>
+    <button id="noBtn" onclick="showNo()">NO 🙈</button>
+
+    <script>
+        const input = document.getElementById("loveInput");
+        const yesBtn = document.getElementById("yesBtn");
+
+        input.addEventListener("input", function() {
+            if (input.value.trim().toUpperCase() === "BROTHER") {
+                yesBtn.disabled = false;
+                yesBtn.style.filter = "blur(0px)";
+                yesBtn.style.opacity = "1";
+                yesBtn.style.cursor = "pointer";
+            } else {
+                yesBtn.disabled = true;
+                yesBtn.style.filter = "blur(3px)";
+                yesBtn.style.opacity = "0.6";
+                yesBtn.style.cursor = "not-allowed";
+            }
+        });
+
+        function showLove() {
+            document.body.innerHTML = `
+                <div class="final-message">
+                    💖 Thank You Amna 💖 <br><br>
+                    You Are The Best Sister Ever ❤️ <br>
+                    Happy Valentine's Day From Your Brother
+                </div>
+            `;
+        }
+
+        function showNo() {
+            document.body.innerHTML = `
+                <div class="final-message">
+                    😄 It's Okay Amna <br><br>
+                    Still You Are My Lovely Sister ❤️ <br>
+                    Happy Valentine's Day
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
