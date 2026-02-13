@@ -9,6 +9,7 @@
             font-family: Arial;
             padding-top: 120px;
             color: white;
+            overflow-x: hidden;
         }
 
         h1 {
@@ -48,64 +49,121 @@
             color: white;
         }
 
-        .final-message {
-            font-size: 26px;
-            margin-top: 50px;
+        .giftBtn {
+            background-color: gold;
+            color: black;
+            font-weight: bold;
         }
 
+        .final-message {
+            font-size: 26px;
+            margin-top: 40px;
+        }
+
+        .story {
+            font-size: 22px;
+            margin-top: 30px;
+        }
+
+        .flower {
+            position: fixed;
+            top: -50px;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
     </style>
 </head>
 <body>
 
-    <h1>Will You Say Happy Valentine's Day To Your Brother? hehehe 💖</h1>
+<h1>Will You Say Happy Valentine's Day To Your Brother? 💖</h1>
 
-    <input type="text" id="loveInput">
+<input type="text" id="loveInput">
+<br>
+<button id="yesBtn" disabled onclick="showLove()">YES 💖</button>
+<button id="noBtn" onclick="showNo()">NO 🙈</button>
 
-    <br>
+<script>
+const input = document.getElementById("loveInput");
+const yesBtn = document.getElementById("yesBtn");
 
-    <button id="yesBtn" disabled onclick="showLove()">YES 💖</button>
-    <button id="noBtn" onclick="showNo()">NO 🙈</button>
+input.addEventListener("input", function() {
+    if (input.value.trim().toUpperCase() === "BROTHER") {
+        yesBtn.disabled = false;
+        yesBtn.style.filter = "blur(0px)";
+        yesBtn.style.opacity = "1";
+        yesBtn.style.cursor = "pointer";
+    } else {
+        yesBtn.disabled = true;
+        yesBtn.style.filter = "blur(3px)";
+        yesBtn.style.opacity = "0.6";
+        yesBtn.style.cursor = "not-allowed";
+    }
+});
 
-    <script>
-        const input = document.getElementById("loveInput");
-        const yesBtn = document.getElementById("yesBtn");
+function createFlowers() {
+    for (let i = 0; i < 20; i++) {
+        let flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = "🌸";
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.animationDuration = (3 + Math.random() * 5) + "s";
+        document.body.appendChild(flower);
+    }
+}
 
-        input.addEventListener("input", function() {
-            if (input.value.trim().toUpperCase() === "BROTHER") {
-                yesBtn.disabled = false;
-                yesBtn.style.filter = "blur(0px)";
-                yesBtn.style.opacity = "1";
-                yesBtn.style.cursor = "pointer";
-            } else {
-                yesBtn.disabled = true;
-                yesBtn.style.filter = "blur(3px)";
-                yesBtn.style.opacity = "0.6";
-                yesBtn.style.cursor = "not-allowed";
-            }
-        });
+function showLove() {
+    document.body.innerHTML = `
+        <div class="final-message">
+            💖 Thank You Amna 💖 <br><br>
+            You Are The Best Sister Ever ❤️ <br>
+            Happy Valentine's Day From Your Brother
+        </div>
 
-        function showLove() {
-            document.body.innerHTML = `
-                <div class="final-message">
-                    💖 Thank You Amna 💖 <br><br>
-                    You Are The Best Sister Ever ❤️ <br>
-                    Happy Valentine's Day From Your Brother
-                </div>
-            `;
-        }
+        <br><br>
 
-        function showNo() {
-            document.body.innerHTML = `
-                <div class="final-message">
-                    😄 It's Okay Amna <br><br>
-                    Still You Are My Lovely Sister ❤️ <br>
-                    Happy Valentine's Day
-                </div>
-            `;
-        }
-    </script>
+        <button class="giftBtn" onclick="showGift1()">🎁 Gift 1</button>
+        <button class="giftBtn" onclick="showGift2()">🎁 Gift 2</button>
+        <button class="giftBtn" onclick="showGift3()">🎁 Gift 3</button>
+
+        <div id="storyArea" class="story"></div>
+    `;
+    createFlowers();
+}
+
+function showNo() {
+    document.body.innerHTML = `
+        <div class="final-message">
+            😄 It's Okay Amna <br><br>
+            Still You Are My Lovely Sister ❤️ <br>
+            Happy Valentine's Day
+        </div>
+    `;
+}
+
+function showGift1() {
+    document.getElementById("storyArea").innerHTML =
+        "🌟 Story 1: Remember our childhood memories? You always supported me. You are my superhero sister 💖";
+    createFlowers();
+}
+
+function showGift2() {
+    document.getElementById("storyArea").innerHTML =
+        "🌟 Story 2: Whenever I was sad, you made me smile. Your love means everything to me ❤️";
+    createFlowers();
+}
+
+function showGift3() {
+    document.getElementById("storyArea").innerHTML =
+        "🌟 Story 3: No matter what happens, you will always be my favorite sister in the world 🌍💖";
+    createFlowers();
+}
+</script>
 
 </body>
 </html>
-
-
